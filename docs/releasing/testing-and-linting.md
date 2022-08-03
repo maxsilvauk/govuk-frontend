@@ -70,6 +70,10 @@ We write functional tests for checking our JavaScript exports and our global sas
 ### Conventions
 We aim to write the description of our tests in as "natural language" as possible, for instance "back-link component fails to render if the required fields are not included".
 
+Each test should be independent and isolated from all other tests. It shouldn't matter what order tests are run in, or how many tests from a test suite are run.
+
+Try and keep assertions small, so they only check for one thing. This makes tests more readable and makes it easier to see what's happening if a test is failing.
+
 ## Updating component snapshots
 For components, the snapshots are stored in `[component-name directory]/_snapshots_`.
 
