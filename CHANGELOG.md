@@ -2,6 +2,50 @@
 
 ## Unreleased
 
+### New features
+
+#### Change the Button component background and text colour
+
+For non-GOV.UK branded websites, you can now change the Button component background and text colour.
+
+To change the Button component background colour set the `$govuk-button-background-colour` Sass variable.
+
+To change the Button component text colour set the `$govuk-button-text-colour` Sass variable.
+
+```scss
+@import "node_modules/govuk-frontend/govuk/base";
+
+$govuk-button-background-colour: govuk-colour("yellow");
+$govuk-button-text-colour: govuk-colour("black");
+@import "node_modules/govuk-frontend/govuk/components/button/index";
+```
+
+This was added in [pull request #2752: Change the Button component background and text colour](https://github.com/alphagov/govuk-frontend/pull/2752). Thanks to [Nick Colley](https://github.com/NickColley) for this contribution.
+
+#### Localise the navigation menu toggle button
+
+When using the [header](https://design-system.service.gov.uk/components/header/) Nunjucks macro, you can now translate the text of the mobile navigation menu toggle button by using the `menuButtonText` parameter.
+
+You should avoid lengthy values for the `menuButtonText` parameter, as the text can overflow and cause visual issues if too long. 
+
+This was added in [pull request #2720: Add parameter to localise mobile menu toggle button](https://github.com/alphagov/govuk-frontend/pull/2720).
+
+### Recommended changes
+
+#### Remove `aria-labelledby`, remove `id="error-summary-title"` from title and move `role="alert"` to child container on the error summary component
+
+If you're not using the Nunjucks macros, you can improve the experience for screen reader users by making these changes to the error summary markup:
+
+- Remove `aria-labelledby="error-summary-title"` and `role="alert"` from the parent element (`govuk-error-summary`)
+- Add a `div` wrapper around the contents of `govuk-error-summary` with the attribute `role="alert"`
+- Remove `id="error-summary-title"` from the error summary `h2` (`govuk-error-summary__title`)
+
+This will enable screen reader users to have a better, more coherent experience with the error summary. Most notably it will ensure that users of JAWS 2022 or later will hear the entire contents of the error summary on page load and therefore have further context on why there is an error on the page they're on.
+
+This was added in [pull request #2677: Amend error summary markup to fix page load focus bug in JAWS 2022](https://github.com/alphagov/govuk-frontend/pull/2677)
+
+## 4.3.1 (Patch release)
+
 ### Recommended changes
 
 #### Replace deprecated `govuk-!-margin-static` and `govuk-!-padding-static` classes
